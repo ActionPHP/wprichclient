@@ -1,42 +1,98 @@
 <?php
 require_once 'class-answers.php';
+require_once 'class-questions.php';
 /**
  * Process the answers and calculates the final score.
  */
 class WPSegmentResults
 {
+	function __construct() {
 
+		$questionsMethod = new WPSegmentQuestions;
+		$answersMethod = new WPSegmentAnswers;
+
+		$this->setQuestionsMethod($questionsMethod);
+		$this->setAnswersMethod($answersMethod);
+	}
 	public function processQuiz()
 	{
-		$this->answer_array = $this->getAnswerArray();
+		//First, let's get the user response
+		$user_response = $this->getUserResponse();
+
+		//Now let's create the answer array for processing.
 		
-		$points = $this->calculate($this->answer_array);
+		$answer_array = $this->createAnswerArray($user_response);
 
-		$this->results = $points;
+		//Finally, we will get the score and return it!
+		
+		$score = $this->fetchScore($answer_array);
 
-		return $points;
+		$this->results = $score;
+
+		return $score;
 	}
 
 	public function calculate($answers)
 	{	
-		$points = 0;
+		
+	}
+
+	public function createAnswerArray($answers)
+	{
+		
+		$wp_segment_answers = $this->getAnswersMethod();
+		$answer_array = array();
 
 		foreach($answers as $answer_id )
 		{
-
-			$wp_segment_answers = new WPSegmentAnswers;
-			
 			$answer = $wp_segment_answers->get($answer_id);
-
-			$points += $answer->points;
 			
+			$answer_object = $this->createSingleAnswerObject($answer);
+
+			$answer_array[] = $answer_object;
+
 		}
 
-		return $points;
-
+		return $answer_array;
 	}
 
-	public function getAnswerArray()
+	public function createSingleAnswerObject($answer)
+	{
+		//We will need to find out what the highest possible score for the question is.
+		// We will store that in points_base, since that is the basis for our point system.
+		
+		$points_base = $this->getPointsBase($answer->question_id);
+
+		$single_answer_object = (object) array(
+
+				'question_id' => $answer->question_id,
+				'answer_id' => $answer->answer_id,
+				'points_base' => $points_base,
+				'points' => $answer->points,
+
+			);
+
+		return $single_answer_object;
+	}
+
+	public function getPointsBase($question_id)
+	{	
+		$answersMethod = $this->getAnswersMethod();
+
+		$answers = $answersMethod->get_by($question_id);
+
+		foreach ($answers as $answer) {
+			
+			$points_array[] = $answer->points;
+		}
+
+		$points_base = max($points_array);
+
+		return $points_base;
+		
+	}
+
+	public function getUserResponse()
 	{
 
 		$user_response = $_POST;
@@ -52,11 +108,38 @@ class WPSegmentResults
 		return $answers;
 	}
 
+	public function fetchScore($answer_array)
+	{
+		# code...
+	}
+
 	public function results(){
 
 
 		return $this->results;
 	}
+public function getQuestionsMethod()
+{
 
+	return $this->questionsMethod;
+	
+}
+
+public function setQuestionsMethod($questionsMethod)
+{
+	$this->questionsMethod = new $questionsMethod;
+}
+
+public function getAnswersMethod()
+{
+	return $this->answersMethod;
+}
+
+public function setAnswersMethod($answersMethod)
+{
+	
+		$this->answersMethod = $answersMethod;
+	
+}
 }
 ?>
