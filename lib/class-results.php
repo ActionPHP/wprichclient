@@ -1,6 +1,8 @@
 <?php
-
-
+require_once 'class-answers.php';
+/**
+ * Process the answers and calculates the final score.
+ */
 class WPSegmentResults
 {
 

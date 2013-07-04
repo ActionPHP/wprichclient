@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Activates the plugin
+ */
 	class WPSegmentActivation
 	{
 

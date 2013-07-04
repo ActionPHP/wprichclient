@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Routes AJAX requests, and processes some of them. (Yeah, I know bad! ;) )
+ */
 class WPSegmentRouter
 {
 
@@ -236,7 +238,7 @@ class WPSegmentRouter
 
 
 		}
-		print_r(get_defined_vars());
+		//print_r(get_defined_vars());
 		die();
 
 	}

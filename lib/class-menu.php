@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Creates WP menus for the plugin
+ */
 class SegmentMenu
 {
 	public $parent_slug = 'actionphp-segment';

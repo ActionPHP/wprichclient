@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Stores and retrieves answers from the database
+ */
 
 	class WPSegmentAnswers
 	{

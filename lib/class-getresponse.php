@@ -1,5 +1,8 @@
 <?php
 require_once (AP_PATH . 'vendor/getresponse/jsonRPCClient.php');
+/**
+ * GetResponse integration
+ */
 class WPSegmentGetResponse
 {
 	private $api_key;

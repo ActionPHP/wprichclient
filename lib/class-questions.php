@@ -1,6 +1,7 @@
 <?php
-
-
+/**
+ * Stores and retrieves questions from the database
+ */
 	class WPSegmentQuestions
 	{
 

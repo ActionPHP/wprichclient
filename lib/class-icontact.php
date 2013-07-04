@@ -1,6 +1,8 @@
 <?php
 require_once(AP_PATH. 'vendor/icontact/iContactApi.php');
-
+/**
+ * Icontact integration
+ */
 class WPSegmentIContact
 {
 

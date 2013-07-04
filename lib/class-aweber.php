@@ -1,5 +1,8 @@
 <?php
 require_once( AP_PATH . 'vendor/aweber_api/aweber_api.php');
+/**
+ * Aweber Integration
+ */
 class WPSegmentAweber
 {
 

@@ -1,7 +1,9 @@
 <?php 
 
 require_once(AP_PATH.'vendor/infusionsoft/isdk.php');
-
+/**
+ * Infusionsoft integration
+ */
 class WPSegmentInfusionsoft
 {
 

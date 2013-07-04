@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Renders the quiz for the front-end user
+ */
 	class WPSegmentQuiz
 	{
 
