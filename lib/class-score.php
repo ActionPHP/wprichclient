@@ -18,12 +18,17 @@ class WPSegmentScore
 	 * @return float         number representing the score for the question.
 	 */
 	public function answerScore($answer)
-	{
+	{	
+		$score = null;
+
 		$answer_points = $answer->points;
 		$points_base = $answer->points_base;
 
-		$score = $answer_points / $points_base;
-		
+		//Let's make sure we don't divide by 0
+		if($points_base != 0){
+
+			$score = $answer_points / $points_base;
+		}
 
 		return $score;
 	}

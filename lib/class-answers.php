@@ -9,6 +9,10 @@
 		public function create($request)
 		{
 			$content = trim(stripslashes($request->text));
+			if(empty($content)){
+
+				return;
+			}
 			$position = $request->position;
 			$question_id = $request->question_id;
 			$points = $request->points;
@@ -56,6 +60,10 @@
 
 			//print_r($request); die();
 			$content = $request->text;
+			if(empty($content)){
+
+				return;
+			}
 			$position = $request->position;
 			$question_id = $request->question_id;
 			$points = $request->points;

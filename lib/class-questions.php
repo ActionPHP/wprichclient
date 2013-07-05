@@ -8,6 +8,12 @@
 		public function create($request)
 		{
 			$content = trim(stripslashes($request->text));
+
+			if(empty($content)){
+
+				return;
+			}
+
 			$position = $request->position;
 
 			$table = $this->getQuestionTable();
@@ -49,6 +55,12 @@
 
 			//print_r($request); die();
 			$content = $request->text;
+
+			if(empty($content)){
+
+				return;
+			}
+			
 			$position = trim(stripslashes($request->position));
 
 			$table = $this->getQuestionTable();

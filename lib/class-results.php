@@ -1,6 +1,7 @@
 <?php
 require_once 'class-answers.php';
 require_once 'class-questions.php';
+require_once 'class-score.php';
 /**
  * Process the answers and calculates the final score.
  */
@@ -10,7 +11,9 @@ class WPSegmentResults
 
 		$questionsMethod = new WPSegmentQuestions;
 		$answersMethod = new WPSegmentAnswers;
+		$scoreMethod = new WPSegmentScore;
 
+		$this->setScoreMethod($scoreMethod);
 		$this->setQuestionsMethod($questionsMethod);
 		$this->setAnswersMethod($answersMethod);
 	}
@@ -19,16 +22,13 @@ class WPSegmentResults
 		//First, let's get the user response
 		$user_response = $this->getUserResponse();
 
-		//Now let's create the answer array for processing.
-		
+		//Now let's create the answer array for processing.		
 		$answer_array = $this->createAnswerArray($user_response);
 
-		//Finally, we will get the score and return it!
-		
+		//Finally, we will get the score and return it!		
 		$score = $this->fetchScore($answer_array);
 
 		$this->results = $score;
-
 		return $score;
 	}
 
@@ -46,7 +46,6 @@ class WPSegmentResults
 		foreach($answers as $answer_id )
 		{
 			$answer = $wp_segment_answers->get($answer_id);
-			
 			$answer_object = $this->createSingleAnswerObject($answer);
 
 			$answer_array[] = $answer_object;
@@ -110,36 +109,49 @@ class WPSegmentResults
 
 	public function fetchScore($answer_array)
 	{
-		# code...
+		$scoreMethod = $this->getScoreMethod();
+		$scoreMethod->setAnswerArray($answer_array);
+		$final_score = $scoreMethod->finalScore();
+
+		return $final_score;
 	}
 
 	public function results(){
-
-
+		
 		return $this->results;
 	}
-public function getQuestionsMethod()
-{
 
-	return $this->questionsMethod;
-	
-}
+	public function getQuestionsMethod()
+	{
 
-public function setQuestionsMethod($questionsMethod)
-{
-	$this->questionsMethod = new $questionsMethod;
-}
+		return $this->questionsMethod;
+		
+	}
 
-public function getAnswersMethod()
-{
-	return $this->answersMethod;
-}
+	public function setQuestionsMethod($questionsMethod)
+	{
+		$this->questionsMethod = new $questionsMethod;
+	}
 
-public function setAnswersMethod($answersMethod)
-{
-	
-		$this->answersMethod = $answersMethod;
-	
-}
+	public function getAnswersMethod()
+	{
+		return $this->answersMethod;
+	}
+
+	public function setAnswersMethod($answersMethod)
+	{
+		
+			$this->answersMethod = $answersMethod;
+		
+	}
+
+	public function setScoreMethod($scoreMethod)
+	{
+		$this->scoreMethod = $scoreMethod;
+	}
+	public function getScoreMethod()
+	{
+		return $this->scoreMethod;
+	}
 }
 ?>
