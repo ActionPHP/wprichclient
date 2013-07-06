@@ -5,6 +5,18 @@ ol li {
 	padding: 15px;
 }
 
+input[type=text]{
+
+	height:32px;
+	padding: 10px;
+	font-size: 16px;
+
+}
+textarea {
+
+	width: 480px;
+	height: 240px;
+}
 .answer-space > li {
 
 	border: none;

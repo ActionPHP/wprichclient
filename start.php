@@ -37,6 +37,7 @@ class WPSegment
 		add_action( 'wp_ajax_actionphp_delete_answer', array($router, 'delete_answer'));
 		add_action( 'wp_ajax_actionphp_process_quiz', array($router, 'process_quiz'));
 		add_action( 'wp_ajax_actionphp_store_contact', array($router, 'store_contact'));
+		add_action( 'wp_ajax_actionphp_quiz_settings', array($router, 'quiz_settings'));
 
 
 		add_action( 'template_redirect', array($router, 'show_quiz' ));
@@ -50,12 +51,18 @@ class WPSegment
 	}
 
 	public function scripts($hook)
-	{
-		if($hook == 'segmenting_page_actionphp-segment-create-quiz'){
+	{	
+		$wp_segment_page = preg_match('/actionphp-segment/', $hook);
+		
+		if($wp_segment_page){
 
 			wp_enqueue_script( 'actionphp_segment_app', plugins_url('js/segment-app.js', __FILE__), array('backbone', 'jquery-ui-sortable') );
 			wp_enqueue_script( 'actionphp_bootstrap_js', "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js", array( 'jquery') );
+			wp_enqueue_script( 'actionphp_script_js', plugins_url('js/script.js', __FILE__) );
 			
+			wp_enqueue_script( 'actionphp_ckeditor_basepath', plugins_url('js/php/ckeditor_basepath.php', __FILE__));
+			wp_enqueue_script( 'actionphp_ckeditor', plugins_url('js/ckeditor/ckeditor.js', __FILE__), array('actionphp_ckeditor_basepath'));
+
 			wp_register_style( 'actionphp_bootstrap_css', "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" );
         	wp_enqueue_style( 'actionphp_bootstrap_css' );
 			

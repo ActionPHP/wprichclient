@@ -37,7 +37,6 @@
 
 			$this->getHeader();
 			$this->getViewPortPHP();
-			$this->getSubmitButton();
 			$this->getFooter();
 
 			#Templates
@@ -59,6 +58,16 @@
 		public function renderDesktopJS()
 		{
 			# code...
+		}
+
+		public function saveSettings()
+		{	
+			$data = $_POST;
+			$header = trim(stripslashes($data['description']));
+			$footer = trim(stripslashes($data['footer']));
+			
+			update_option('wp_segment_quiz_header', $header);
+			update_option('wp_segment_quiz_footer', $footer);
 		}
 
 		public function getFullQuiz()
@@ -96,6 +105,8 @@
 			}
 
 			$quiz_view_port .= $question_view;
+			$quiz_view_port .= $this->getSubmitButton(true);
+
 			$quiz_view_port .= '</form> </div>';
 
 			if($return){
@@ -166,6 +177,18 @@
 			include(AP_PATH. 'templates/default/header.php');
 
 
+		}
+
+		public function getDescription()
+		{
+			$description = get_option('wp_segment_quiz_header');
+			return $description;
+		}
+
+		public function getFooterContent()
+		{
+			$footer = get_option('wp_segment_quiz_footer');
+			return $footer;
 		}
 
 		public function getFooter($footer=''){

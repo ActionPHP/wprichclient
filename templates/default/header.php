@@ -17,7 +17,7 @@
 	<body>
 
 		<div class="container" id="main-view-port">
-
-			<h1 class="text-info"><?php echo $this->getTitle(); ?></h1>
-
+			<div id="header" >
+				<?php	echo $this->getDescription(); ?>
+			</div>
 

@@ -11,8 +11,9 @@ class SegmentMenu
  	{
  		$this->main_menu();
  		$this->create_quiz_menu();
- 		$this->autoresponder_menu();
-
+ 		$this->quiz_settings_menu();
+ 		$this->results_settings_menu();
+		$this->autoresponder_menu();
 
  	}
 
@@ -58,6 +59,53 @@ class SegmentMenu
  		include($path);
 
  	}
+
+ 	public function results_settings_menu()
+ 	{
+ 		$parent_slug = 'actionphp-segment';//$this->parent_slug;
+ 		$page_title = 'Your results settings';
+ 		$menu_title = 'Results settings';
+ 		$capability = $this->capability;
+ 		$menu_slug = 'actionphp-segment-results-settings';
+ 		$function = array ($this, 'results_settings_menu_view');
+
+		add_submenu_page( 'actionphp-segment', $page_title, $menu_title, $capability, $menu_slug, $function );
+
+
+ 	}
+
+ 	public function results_settings_menu_view()
+ 	{
+ 		$path = AP_PATH;
+ 		$path.= 'menu/results-settings.php';
+ 		
+ 		include($path);
+
+ 	}
+
+ 	public function quiz_settings_menu()
+ 	{
+ 		$parent_slug = 'actionphp-segment';//$this->parent_slug;
+ 		$page_title = 'Your quiz settings';
+ 		$menu_title = 'Quiz settings';
+ 		$capability = $this->capability;
+ 		$menu_slug = 'actionphp-segment-quiz-settings';
+ 		$function = array ($this, 'quiz_settings_menu_view');
+
+		add_submenu_page( 'actionphp-segment', $page_title, $menu_title, $capability, $menu_slug, $function );
+
+
+ 	}
+
+ 	public function quiz_settings_menu_view()
+ 	{
+ 		$path = AP_PATH;
+ 		$path.= 'menu/quiz-settings.php';
+ 		
+ 		include($path);
+
+ 	}
+
 
  	public function autoresponder_menu()
  	{

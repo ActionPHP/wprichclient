@@ -138,6 +138,14 @@ class WPSegmentRouter
 
 	}
 
+	public function quiz_settings()
+	{
+		$quiz = new WPSegmentQuiz;
+		$quiz->saveSettings();
+		
+		die();
+	}
+
 	public function delete_answer()
 	{
 		$request = $this->getRequest();

@@ -133,7 +133,7 @@ function submitSegmentQuizForm(){
 function showResult(){
 
 	var emailForm = $('#wp-segment-email-form-template').html();
-	$('#main-view-port').html(emailForm);
+	$('#quiz-view-port').html(emailForm);
 	$('#submit-contact-details').click(submitContactDetails);
 
 
