@@ -19,6 +19,6 @@
 		<div class="container" id="main-view-port">
 			<div id="header" >
 				<h1><?php echo $this->getQuizName(); ?> </h1>
-				<?php	echo $this->getDescription(); ?>
+				
 			</div>
 

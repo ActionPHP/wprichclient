@@ -32,8 +32,13 @@ class WPSegmentResults
 		return $score;
 	}
 
-	public function calculate($answers)
-	{	
+	public function saveSettings()
+	{
+		$result_array = $_POST['result_array'];
+
+		$high = $result_array['high'];
+		$medium = $result_array['medium'];
+		$low = $result_array['low'];
 		
 	}
 

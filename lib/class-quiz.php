@@ -92,10 +92,10 @@
 		public function getViewPortPHP($return = false)
 		{
 			session_start();
-
-			$quiz = $this->getFullQuiz();
+			 $quiz = $this->getFullQuiz();
 			
 			$quiz_view_port = '<div id="quiz-view-port" >';
+			$quiz_view_port .= $this->getDescription();
 			$question_view = '';
 
 			foreach ($quiz as $question) {
