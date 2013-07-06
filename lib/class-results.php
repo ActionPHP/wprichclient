@@ -39,7 +39,7 @@ class WPSegmentResults
 		$high = $result_array['high'];
 		$medium = $result_array['medium'];
 		$low = $result_array['low'];
-		
+
 	}
 
 	public function createAnswerArray($answers)
@@ -121,6 +121,10 @@ class WPSegmentResults
 		return $final_score;
 	}
 
+	public function resultsHTML($score='')
+	{
+		# code...
+	}
 	public function results(){
 		
 		return $this->results;
