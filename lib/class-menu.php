@@ -102,6 +102,10 @@ class SegmentMenu
  		$path = AP_PATH;
  		$path.= 'menu/quiz-settings.php';
  		
+ 		 $quiz_name	= get_option('wp_segment_quiz_name');
+ 		 $description= get_option('wp_segment_quiz_description');
+		 $footer= get_option('wp_segment_quiz_footer');
+
  		include($path);
 
  	}

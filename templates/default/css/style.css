@@ -1,11 +1,16 @@
 #main-view-port{
 
-	width: 780px;
+	width: 640px;
 }
 
 #header {
 
 	margin-bottom: 15px;
+}
+
+#header h1{
+
+		text-align: center;
 }
 
 #footer{

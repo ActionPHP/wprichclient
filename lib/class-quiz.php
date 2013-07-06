@@ -63,10 +63,13 @@
 		public function saveSettings()
 		{	
 			$data = $_POST;
-			$header = trim(stripslashes($data['description']));
+			$description = trim(stripslashes($data['description']));
 			$footer = trim(stripslashes($data['footer']));
+			$name = trim(stripslashes($data['name']));
+
 			
-			update_option('wp_segment_quiz_header', $header);
+			update_option('wp_segment_quiz_description', $description);
+			update_option('wp_segment_quiz_name', $name);
 			update_option('wp_segment_quiz_footer', $footer);
 		}
 
@@ -179,9 +182,14 @@
 
 		}
 
-		public function getDescription()
+		public function getQuizName()
 		{
-			$description = get_option('wp_segment_quiz_header');
+			$name = get_option('wp_segment_quiz_name');
+			return $name;
+		}
+		public function getDescription()
+		{	
+			$description = get_option('wp_segment_quiz_description');
 			return $description;
 		}
 
