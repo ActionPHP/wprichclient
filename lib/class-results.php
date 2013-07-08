@@ -113,10 +113,22 @@ class WPSegmentResults
 
 	public function resultLevel($score)
 	{
-		$high = get_option('wp_segment_quiz_result_points_high');
-		$medium = get_option('wp_segment_quiz_result_points_medium');
-		$low = get_option('wp_segment_quiz_result_points_low');
-		$bottom = get_option('wp_segment_quiz_result_points_bottom');
+		$resultsTable = $this->getResultsTable();
+		$score_levels = $resultsTable->get();
+
+		$score_object = new stdClass();
+
+		foreach ($score_levels as $scores) {
+			
+			$level = $scores->level;
+
+			$score_object->$level = $scores->level;
+		}
+
+		$high  = $score_object->high;
+		$medium = $score_object->medium;
+		$low = $score_object->low;
+		$bottom = $score_object->bottom;
 
 		if($score < $low){
 
@@ -137,20 +149,20 @@ class WPSegmentResults
 
 			$resultLevel = 'medium';
 		}
-
 		return $resultLevel;
 	}
 	
 	public function resultsHTML($resultLevel)
 	{	
-		if(empty($resultsLevel)){
+
+		if(empty($resultLevel)){
 
 			return;
 		}
 
-		$result_html_option = 'wp_segment_quiz_result_html_' . $resultLevel;
-		$resultsHtml = 	get_option($result_html_option);
-		print_r(get_defined_vars());
+		
+				
+
 		return $resultsHtml;
 	}
 
@@ -167,20 +179,27 @@ class WPSegmentResults
 	}
 	public function results(){
 		
+		$resultsTable = $this->getResultsTable();
+
+		$resultLevel = $this->resultLevel($this->score);
+		$score_info = $resultsTable->get_by( $resultLevel, 'level');
+		$score_info = $score_info[0];
+
 		$output = array();
 
 		$output['score'] = $this->score;
 
-		$resultsLevel = $this->resultLevel($this->score);
-		$resultsHtml = $this->resultsHTML($resultLevel);
 
-		$output['html'] = $resultsHtml;
+		$resultHtml = $score_info->html;
+		$output['html'] = $resultHtml;
 
-		$resultList = $this->getResultList($resultLevel);
-
+		$resultList = $score_info->list;
 		$output['list'] = $resultList;
 
 		$output = json_encode($output);
+
+		update_option('a1', get_defined_vars());
+		
 		return $output;
 	}
 

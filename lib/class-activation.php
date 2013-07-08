@@ -119,8 +119,6 @@ require_once 'class-builder.php';
 	      	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
     		dbDelta($sql);
-
-    		update_option('a1', $wpdb);
 		}
 
 		public function populate_results_table()

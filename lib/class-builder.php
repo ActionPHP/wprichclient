@@ -96,7 +96,7 @@
 			
 		
 		protected function _get_items_by_field( $id , $field ){
-			$this->validate( $id, $field );
+			//$this->validate( $id, $field );
 			
 			global $wpdb;
 			$table_name = $this->table_name;
