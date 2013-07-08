@@ -65,6 +65,10 @@
 
 	$getresponse_api_key = get_option('wp_segment_getresponse_api_key');
 
+	if(empty($autoresponder)){
+
+		$autoresponder = 'aweber';
+	}
 
 
 ?>

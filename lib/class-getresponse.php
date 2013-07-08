@@ -42,6 +42,16 @@ class WPSegmentGetResponse
 
 	}
 
+	public function getLists()
+	{
+		$api = $this->getAPI();
+		$api_key = $this->getAPIKey();
+		
+		$lists = $api->get_campaigns($api_key);
+
+		return $lists;
+	}
+
 	public function saveWPSettings()
 	{
 			$api_key = trim(stripslashes($_POST['getresponse-api-key']));
@@ -52,7 +62,7 @@ class WPSegmentGetResponse
 			}
 	}	
 
-	public function getAPI($first_name, $last_name, $email)
+	public function getAPI()
 	{
 		$api_url = 'http://api2.getresponse.com';
 		# initialize JSON-RPC client

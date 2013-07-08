@@ -28,18 +28,8 @@ class WPSegmentResults
 		//Finally, we will get the score and return it!		
 		$score = $this->fetchScore($answer_array);
 
-		$this->results = $score;
+		$this->score = $score;
 		return $score;
-	}
-
-	public function saveSettings()
-	{
-		$result_array = $_POST['result_array'];
-
-		$high = $result_array['high'];
-		$medium = $result_array['medium'];
-		$low = $result_array['low'];
-
 	}
 
 	public function createAnswerArray($answers)
@@ -121,13 +111,77 @@ class WPSegmentResults
 		return $final_score;
 	}
 
-	public function resultsHTML($score='')
+	public function resultLevel($score)
 	{
-		# code...
+		$high = get_option('wp_segment_quiz_result_points_high');
+		$medium = get_option('wp_segment_quiz_result_points_medium');
+		$low = get_option('wp_segment_quiz_result_points_low');
+		$bottom = get_option('wp_segment_quiz_result_points_bottom');
+
+		if($score < $low){
+
+			$resultLevel = 'bottom';
+		}
+
+		if($score >= $high){
+
+			$resultLevel = 'high';
+		}
+
+		if($score < $medium && $score >= $low){
+
+			$resultLevel = 'low';
+		}
+
+		if($score < $high && $score >= $medium){
+
+			$resultLevel = 'medium';
+		}
+
+		return $resultLevel;
+	}
+	
+	public function resultsHTML($resultLevel)
+	{	
+		if(empty($resultsLevel)){
+
+			return;
+		}
+
+		$result_html_option = 'wp_segment_quiz_result_html_' . $resultLevel;
+		$resultsHtml = 	get_option($result_html_option);
+		print_r(get_defined_vars());
+		return $resultsHtml;
+	}
+
+	public function getResultList($resultsLevel)
+	{
+		$lists = get_option('wp_segment_quiz_lists');
+
+		$list = $lists['$resultsLevel'];
+		return $list;
+	}
+	public function resultOutput()
+	{
+		
 	}
 	public function results(){
 		
-		return $this->results;
+		$output = array();
+
+		$output['score'] = $this->score;
+
+		$resultsLevel = $this->resultLevel($this->score);
+		$resultsHtml = $this->resultsHTML($resultLevel);
+
+		$output['html'] = $resultsHtml;
+
+		$resultList = $this->getResultList($resultLevel);
+
+		$output['list'] = $resultList;
+
+		$output = json_encode($output);
+		return $output;
 	}
 
 	public function getQuestionsMethod()
@@ -161,6 +215,47 @@ class WPSegmentResults
 	public function getScoreMethod()
 	{
 		return $this->scoreMethod;
+	}
+
+	public function saveSettings()
+	{
+		$settings = $_POST;
+
+		$highPointsMinimum = $settings['high'];
+		$mediumPointsMinimum = $settings['medium'];
+		$lowPointsMinimum = $settings['low'];
+		$bottomPointsMinimum = $settings['bottom'];
+
+
+		$highList = $settings['high_list'];
+		$mediumList = $settings['medium_list'];
+		$lowList = $settings['low_list'];
+		$bottomList = $settings['bottom_list'];
+
+		$highHTML = $settings['high_HTML'];
+		$mediumHTML = $settings['medium_HTML'];
+		$lowHTML = $settings['low_HTML'];
+		$bottomHTML = $settings['bottom_HTML'];
+
+
+	}
+
+	public function getSettings()
+	{	
+		$resultsTable = $this->getResultsTable();
+		$settings = $resultsTable->get();
+
+		//Since we're getting the values ordered by Id DESC, let's reverse the order
+		// so that 'high' comes first
+		
+		$settings = array_reverse($settings);
+		
+		return $settings;
+	}
+	public function getResultsTable()
+	{
+		$table = new pp_action_php_builder('pp_actionphp_results');
+		return $table;
 	}
 }
 ?>

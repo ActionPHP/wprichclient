@@ -206,6 +206,13 @@ class WPSegmentRouter
 		$first_name = trim(stripslashes($_POST['FirstName']));
 		$last_name = trim(stripslashes($_POST['LastName']));
 		$email = trim(stripslashes($_POST['Email']));
+		$list = trim(stripslashes($_POST['list']));
+
+		//If there isn't a list set, we just get out of here.
+		if($list == "_none"){
+
+			return;
+		}
 
 		$autoresponder_service = get_option('wp_segment_autoresponder_service');
 
@@ -216,7 +223,7 @@ class WPSegmentRouter
 			case "aweber":
 
 				$aweber = new WPSegmentAweber;
-				$list = '2975330';
+				
 				$aweber->addContact($first_name, $last_name, $email, $list);
 
 			break;
@@ -224,7 +231,7 @@ class WPSegmentRouter
 			case "getresponse":
 
 				$getresponse = new WPSegmentGetResponse;
-				$list = 'nekU';
+				
 				$getresponse->addContact($first_name, $last_name, $email, $list);
 
 			break;
