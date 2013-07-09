@@ -11,7 +11,7 @@ class WPSegmentAutoresponder
 	private $connection;
 	private $lists = array();
 
-	public function showLists($selected = '')
+	public function showLists($name='', $selected = '')
 	{
 		
 		$autoresponder = get_option('wp_segment_autoresponder_service');
@@ -23,7 +23,7 @@ class WPSegmentAutoresponder
 
 		$lists = $this->getLists($autoresponder);
 
-		$list_select = '<select id="wp-segment-list" >';
+		$list_select = '<select name="' . $name . '" class="wp-segment-list" >';
 		$list_select .= '<option value="_none" >No list</option>';
 		foreach ($lists as $list_id => $list) {
 			

@@ -166,6 +166,12 @@ class WPSegmentRouter
 
 	}
 
+	public function result_settings()
+	{
+		print_r($_POST);
+		die();
+	}
+
 	public function getRequest(){
 
 		$request_body = file_get_contents(('php://input'));

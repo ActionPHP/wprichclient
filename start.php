@@ -38,6 +38,7 @@ class WPSegment
 		add_action( 'wp_ajax_actionphp_process_quiz', array($router, 'process_quiz'));
 		add_action( 'wp_ajax_actionphp_store_contact', array($router, 'store_contact'));
 		add_action( 'wp_ajax_actionphp_quiz_settings', array($router, 'quiz_settings'));
+		add_action( 'wp_ajax_actionphp_result_settings', array($router, 'result_settings'));
 
 
 		add_action( 'template_redirect', array($router, 'show_quiz' ));
@@ -56,6 +57,7 @@ class WPSegment
 		
 		if($wp_segment_page){
 
+			wp_enqueue_script( 'json2' );
 			wp_enqueue_script( 'actionphp_segment_app', plugins_url('js/segment-app.js', __FILE__), array('backbone', 'jquery-ui-sortable') );
 			wp_enqueue_script( 'actionphp_bootstrap_js', "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js", array( 'jquery') );
 			wp_enqueue_script( 'actionphp_script_js', plugins_url('js/script.js', __FILE__) );
