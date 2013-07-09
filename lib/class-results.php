@@ -238,24 +238,23 @@ class WPSegmentResults
 
 	public function saveSettings()
 	{
-		$settings = $_POST;
+		$data = trim(stripslashes($_POST['data']));
+		$data = json_decode($data);
 
-		$highPointsMinimum = $settings['high'];
-		$mediumPointsMinimum = $settings['medium'];
-		$lowPointsMinimum = $settings['low'];
-		$bottomPointsMinimum = $settings['bottom'];
+		$table = $this->getResultsTable();		
 
+		foreach ($data as $level => $value) {
+			
+			$id = $table->get_by($level, 'level');
+			$id = $id[0];
+			$id = $id->id;
+			
+			$table->update($id, $value->points, 'points');
+			$table->update($id, $value->list, 'list');
+			$table->update($id, $value->html, 'html');
 
-		$highList = $settings['high_list'];
-		$mediumList = $settings['medium_list'];
-		$lowList = $settings['low_list'];
-		$bottomList = $settings['bottom_list'];
-
-		$highHTML = $settings['high_HTML'];
-		$mediumHTML = $settings['medium_HTML'];
-		$lowHTML = $settings['low_HTML'];
-		$bottomHTML = $settings['bottom_HTML'];
-
+			
+		}
 
 	}
 
