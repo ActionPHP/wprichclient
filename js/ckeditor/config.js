@@ -26,7 +26,7 @@ CKEDITOR.editorConfig = function( config ) {
 		
 	];
 
-	config.removePlugins = 'flash, iframe, table, smiley, save, preview, newpage, print, templates, specialchar,  pagebreak ';
+	config.removePlugins = 'flash, iframe, table, tabletools, smiley, save, preview, newpage, print, templates, specialchar,  pagebreak ';
 	// Remove some buttons, provided by the standard plugins, which we don't
 	// need to have in the Standard(s) toolbar.
 	config.removeButtons = 'Subscript,Superscript';

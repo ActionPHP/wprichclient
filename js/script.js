@@ -102,7 +102,7 @@ console.log(wp_segment_settings);
 
 		var data_to_go = JSON.stringify(wp_result_settings);
 		var settings = JSON.stringify(thing);//
-		console.log(JSON.stringify(['object']));
+
 		//Let's post this thing so it can be saved!
 		var url = ajaxurl + '?action=actionphp_result_settings';
 		$.post(url, { data: data_to_go}, function(response){
