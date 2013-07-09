@@ -50,7 +50,7 @@ function wp_segment_result_setting_fields($settings){
 		<textarea name="wp-segment-result-message-<?php echo $settings->level; ?>"></textarea>
 		<script type="text/javascript">
 		CKEDITOR.replace('wp-segment-result-message-<?php echo $settings->level; ?>').setData('<?php echo
-			$settings->html; ?>');
+			str_replace("\n", "\\n", $settings->html); ?>');
 		</script>
 		</label>
 	<hr>	

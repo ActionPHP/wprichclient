@@ -168,7 +168,9 @@ class WPSegmentRouter
 
 	public function result_settings()
 	{
-		print_r($_POST);
+		$wp_segment_quiz_results = new WPSegmentResults;
+		$wp_segment_quiz_results->saveSettings();		
+
 		die();
 	}
 

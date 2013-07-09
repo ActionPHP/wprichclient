@@ -151,7 +151,7 @@
 			
 			);
 
-							
+			
 		}
 		
 		public function update($id, $value, $field, $type ='%s'){
