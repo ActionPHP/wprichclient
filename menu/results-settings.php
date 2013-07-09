@@ -12,7 +12,8 @@ $settings = $resultSettings->getSettings();
 ?>
 	<label><h2>Your quiz results settings:</h2></label>
 <input type="button" value="Save settings" class="wp-segment-result-settings
-button-primary" />
+button-primary" /> <span class="wp-segment-ajax-indicator"></span>
+
 <?php
 foreach ($settings as $level) {
 
@@ -59,7 +60,8 @@ function wp_segment_result_setting_fields($settings){
 
 ?>
 <input type="button" value="Save settings" class="wp-segment-result-settings
-button-primary" />
+button-primary" /> <span class="wp-segment-ajax-indicator"></span>
+
 
 <?php
 

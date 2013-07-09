@@ -120,7 +120,7 @@ function submitSegmentQuizForm(){
 
 			function(response)
 			{
-				showResult();
+				showResult(response);
 				console.log(response);
 
 			}
@@ -130,22 +130,50 @@ function submitSegmentQuizForm(){
 
 }
 
-function showResult(){
+function showResult(response){
+
 
 	var emailForm = $('#wp-segment-email-form-template').html();
-	$('#quiz-view-port').html(emailForm);
-	$('#submit-contact-details').click(submitContactDetails);
+
+	var results = JSON.parse(response);
+
+	var html = results.html;
+	var score = results.score;
+	var list  = results.list;
+
+	$('#quiz-view-port').html('');
+
+	scoreHTML = '<center><p style="padding: 10px; border: 1px #cc0000 dashed;"><span style="font-size: 24px" >Your score is: <strong>' + score + '	</strong></span></p></center>';
+
+	$('#quiz-view-port').append(scoreHTML);
+	$('#quiz-view-port').append(html);
+
+	console.log(results.html);
+	
+	if( list != '_none'){
+
+		$('#quiz-view-port').append(emailForm);
+		$('#submit-contact-details').click(function(){ 
+
+			submitContactDetails(list);
+
+		});
+
+	}
+
+	
 
 
 
 }
 
-function submitContactDetails(){
+function submitContactDetails(list){
 
 	var formData = $('#wp-segment-email-form').serialize();
-	
+	console.log(list);
 	console.log('Submitting...');
-	
+
+	formData = formData + '&List='+list
 	$.post(
 
 			ajaxurl + '?action=actionphp_store_contact',
@@ -154,6 +182,7 @@ function submitContactDetails(){
 
 			function(response){
 
+				alert("Thank you! Please check your inbox for what to do next.");
 				console.log(response);
 
 			}

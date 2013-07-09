@@ -214,7 +214,7 @@ class WPSegmentRouter
 		$first_name = trim(stripslashes($_POST['FirstName']));
 		$last_name = trim(stripslashes($_POST['LastName']));
 		$email = trim(stripslashes($_POST['Email']));
-		$list = trim(stripslashes($_POST['list']));
+		$list = trim(stripslashes($_POST['List']));
 
 		//If there isn't a list set, we just get out of here.
 		if($list == "_none"){
@@ -254,7 +254,7 @@ class WPSegmentRouter
 			case "icontact":
 
 				$icontact = new WPSegmentIContact;
-				$icontact->addContact($first_name, $last_name, $email);
+				$icontact->addContact($first_name, $last_name, $email, $list);
 
 			break;
 

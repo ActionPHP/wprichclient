@@ -18,6 +18,23 @@
 	margin-top: 15px;
 }
 
+#wp-segment-email-form {
+
+	width: 400px;
+}
+
+#wp-segment-email-form label{
+
+	margin-bottom: 15px;
+
+}
+
+#wp-segment-email-form input[type=text]{
+
+	float: right;
+
+}
+
 .wp-segment-quiz-question{
 
 	margin: 30px 0;
@@ -40,4 +57,8 @@
 .black {
 
 	color: #00000;
+}
+.clear {
+
+	clear:both;
 }

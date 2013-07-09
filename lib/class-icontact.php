@@ -6,11 +6,15 @@ require_once(AP_PATH. 'vendor/icontact/iContactApi.php');
 class WPSegmentIContact
 {
 
-	public function addContact($first_name, $last_name, $email)
+	public function addContact($first_name, $last_name, $email, $list='')
 	{
 		$api = $this->getAPI();
-		$api->addContact($email, 'normal', null, $first_name, $last_name);
+		$_add = $api->addContact($email, 'normal', null, $first_name, $last_name);
 
+		$contactId = $_add->contactId;
+
+		$api->subscribeContactToList($contactId, $list);
+		
 	}
 
 	public function getAPI()
@@ -52,6 +56,22 @@ class WPSegmentIContact
 			update_option('wp_segment_icontact_password', $icontact_password)	;
 
 		}
+	}
+
+	public function getLists()
+	{
+		$api = $this->getAPI();
+		$lists = $api->getLists();
+
+		$_lists = array();
+
+		foreach($lists as $list){
+
+			$_lists[$list->listId] = array( 'name' => $list->name );
+		}
+
+		return $_lists;
+
 	}
 
 }

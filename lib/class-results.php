@@ -118,11 +118,15 @@ class WPSegmentResults
 
 		$score_object = new stdClass();
 
+		$score_array = array();
+
 		foreach ($score_levels as $scores) {
 			
 			$level = $scores->level;
-
-			$score_object->$level = $scores->level;
+			$points = $scores->points;
+			
+			$score_object->$level = $points;
+			//$score_object->$level->points = $scores->points;
 		}
 
 		$high  = $score_object->high;
@@ -149,6 +153,7 @@ class WPSegmentResults
 
 			$resultLevel = 'medium';
 		}
+
 		return $resultLevel;
 	}
 	
@@ -191,14 +196,13 @@ class WPSegmentResults
 
 
 		$resultHtml = $score_info->html;
-		$output['html'] = $resultHtml;
+		$output['html'] = trim(stripslashes($resultHtml));
 
 		$resultList = $score_info->list;
 		$output['list'] = $resultList;
 
 		$output = json_encode($output);
 
-		update_option('a1', get_defined_vars());
 		
 		return $output;
 	}
@@ -253,8 +257,9 @@ class WPSegmentResults
 			$table->update($id, $value->list, 'list');
 			$table->update($id, $value->html, 'html');
 
-			
 		}
+
+
 
 	}
 

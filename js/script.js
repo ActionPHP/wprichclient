@@ -55,12 +55,11 @@ jQuery(document).ready(function($){
 		);
 
 
-console.log(wp_segment_settings);
 	});
 
 
 	$('.wp-segment-result-settings').click(function () {
-		
+		indicate.saving();
 
 		var wp_result_settings = {};
 		wp_result_settings['high'] = {};
@@ -107,7 +106,7 @@ console.log(wp_segment_settings);
 		var url = ajaxurl + '?action=actionphp_result_settings';
 		$.post(url, { data: data_to_go}, function(response){
 
-			console.log(response);
+			indicate.saved();
 
 		});
 

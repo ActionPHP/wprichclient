@@ -27,12 +27,13 @@ class WPSegmentAutoresponder
 		$list_select .= '<option value="_none" ';
 		
 		if($selected == '_none') $list_select .= 'selected="selected"' ;
+
 		$list_select .= ' >No list</option>';
 		
 		foreach ($lists as $list_id => $list) {
 			
 			$list_select .= '<option value="' . $list_id . '"' ;
-			$list_select .= '<option value="_none" ';
+			
 
 		if($selected == $list_id) $list_select .= 'selected="selected"';
 		

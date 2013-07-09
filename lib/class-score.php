@@ -77,7 +77,7 @@ class WPSegmentScore
 		return $answer_array;
 	}
 
-	public function finalScore($multiplier=10)
+	public function finalScore($multiplier=100)
 	{
 		if(!$this->getAnswerArray()) return false;
 

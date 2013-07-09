@@ -26,7 +26,7 @@ class WPSegmentAweber
 			);
 
 		$subscribers = $list->subscribers;
-
+		
 		try {
 
 				$new_subscriber = $subscribers->create($params);
@@ -98,8 +98,15 @@ class WPSegmentAweber
 	public function getLists()
 	{
 		$account = $this->getAccount();
-
-		return $account->lists;
+		$lists = $account->lists->data['entries'];
+		$_lists = array();
+		foreach ($lists as $list) {
+			
+			
+			$_lists[$list['id']] = $list;
+		}
+		//update_option('a1', $_lists);
+		return $_lists;
 	}
 }
 
