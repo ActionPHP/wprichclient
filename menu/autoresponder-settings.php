@@ -44,7 +44,7 @@
 
 		}
 
-
+		$saved = true;
 
 	}
 		
@@ -87,6 +87,22 @@
 	</select>
 
 </label>
+<?php 
+	if($saved){
+?>
+<label>
+
+	<div style="border: 2px green solid; width: 540px; padding: 10px;" id="wp-segment-autoresponder-settings-saved" ><h4 style="color: #008C00" >Your
+		settings have been saved!</h4>
+	</div>
+	<script type="text/javascript">
+		jQuery('#wp-segment-autoresponder-settings-saved').delay('5000').fadeOut('10000');
+	</script>
+
+</label>
+<?php
+	}
+?>
 	<div id="view-port" >
 
 

@@ -7,6 +7,7 @@ class WPSegment
 	public function run(){
 
 		define('AP_PATH', plugin_dir_path(__FILE__));
+		
 		require_once('scripts.php');
 		
 		//register_activation_hook( __FILE__, array($this, 'activate') ); //Not working for some reason.

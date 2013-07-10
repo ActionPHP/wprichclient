@@ -3,8 +3,6 @@
 require_once AP_PATH . 'lib/class-autoresponder.php';
 require_once AP_PATH . 'lib/class-results.php';
 
-
-
 $resultSettings = new WPSegmentResults;
 
 $settings = $resultSettings->getSettings();

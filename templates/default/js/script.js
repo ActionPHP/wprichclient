@@ -27,7 +27,7 @@ function validateQuiz(){
 }
 
 function totalQuestionsAnswered(){
-	
+	$('#quiz-view-port-message').html('');
 	var answers = {};
 	var total = 0;
 	
@@ -56,6 +56,7 @@ function totalQuestionsAnswered(){
 
 	if( total != totalChecked){
 		
+		$('#quiz-view-port-message').html('<h5 style="color: #cc0000;">Please answer all questions - unanswered questions are highlighted in red.</h5>');
 		console.log('There are still unanswered questions.');
 
 		return false;
@@ -112,6 +113,7 @@ function getQuestionIDFromAnswer (name) {
 
 function submitSegmentQuizForm(){
 
+	$('#submit-segment-quiz').html('Submitting...');
 	$.post(
 
 			ajaxurl + '?action=actionphp_process_quiz',
@@ -169,9 +171,47 @@ function showResult(response){
 
 function submitContactDetails(list){
 
+	$('#wp-segment-email-form-message').html('');
+	var firstName = $.trim($("#FirstName").val());
+	var email 	  = $.trim($("#Email").val());
+	var validatedEmail = false;
+	var validatedName = false;
+	if(!email || email.length === 0 || !validateEmail(email)){
+
+		$("#Email").css('border-color', '#cc0000');
+		$('#wp-segment-email-form-message').append('Please fill in your valid email.</br>')
+		console.log('Please fill in your email.');
+		
+
+	} else {
+		$("#Email").css('border-color', '#ccc');
+		validatedEmail = true;
+	}
+
+
+	if(!firstName || firstName.length === 0){
+
+		$("#FirstName").css('border-color' , '#cc0000');
+		$('#wp-segment-email-form-message').append('Please fill in your name.</br>')
+		console.log('Please fill in your name.');
+		
+	} else {
+
+		$("#FirstName").css('border-color' , '#ccc');
+		validatedName = true;
+	}
+
+	if(!validatedEmail || !validatedName){
+
+		return false;
+	}
+
+	var submittingHTML = $("#wp-segment-submitting-template").html();
+	$('#quiz-view-port').html(submittingHTML);
+
+
 	var formData = $('#wp-segment-email-form').serialize();
-	console.log(list);
-	console.log('Submitting...');
+	
 
 	formData = formData + '&List='+list
 	$.post(
@@ -182,12 +222,22 @@ function submitContactDetails(list){
 
 			function(response){
 
-				alert("Thank you! Please check your inbox for what to do next.");
-				console.log(response);
+				var submittedHTML = $("#wp-segment-thank-you-template").html();
+				$('#quiz-view-port').html(submittedHTML);
+				wp-segment-thank-you-template
 
 			}
 
 
 		);
 
+}
+
+function validateEmail($email) {
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  if( !emailReg.test( $email ) ) {
+    return false;
+  } else {
+    return true;
+  }
 }

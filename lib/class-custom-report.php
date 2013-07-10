@@ -1,5 +1,5 @@
 <?php
-
+require_once AP_PATH . 'vendor/html2pdf/html2pdf.class.php';
 	/**
 	* 	
 	*/
@@ -11,8 +11,16 @@
 			# code...
 		}
 
-		public function create($answer_array)
+		public function create()
 		{
+			$html = $this->getHTML();
+
+		}
+
+		public function html()
+		{
+			$answer_array = $this->getAnswerArray();
+
 			$head = '<h1 style="text-align: center;">' . $quiz_name . '</h1>';
 
 			$template = '<div>';
@@ -37,13 +45,58 @@
 				$body .= $template;
 			}
 
+			$body .= '</body>';
+			$body .= '</html>';
+
+			$this->setHTML($body);
 			return $body;
 
 		}
 
 		public function convertToPDF()
 		{
-			
+			ob_start();
+			echo $this->html;
+			$content = ob_get_clean();
+
+			try
+		    {
+		        // init HTML2PDF
+		        $html2pdf = new HTML2PDF('P', 'A4', 'fr', true, 'UTF-8', array(0, 0, 0, 0));
+
+		        // display the full page
+		        $html2pdf->pdf->SetDisplayMode('fullpage');
+
+		        // convert
+		        $html2pdf->writeHTML($content, isset($_GET['vuehtml']));
+		        // send the PDF
+		        $html2pdf->Output('about.pdf');
+		    }
+		    catch(HTML2PDF_exception $e) {
+		        echo $e;
+		        exit;
+		    }
+
+		}
+
+		public function setAnswerArray($answer_array)
+		{
+			$this->answer_array = $answer_array;
+		}
+
+		public function getAnswerArray()
+		{
+			return $this->answer_array;
+		}
+		
+		public function setHTML($html)
+		{
+			$this->html = $html;
+		}
+
+		public function getHTML()
+		{
+			return $this->html;
 		}
 	}
 

@@ -48,13 +48,47 @@ class WPSegmentInfusionsoft
 
 		$contact_id = $api->addCon($contact);
 		
-		print_r($contact_id);
-
 		if($tag_id){
 
 			$this->tagContact($contact_id, $tag_id);
 
 		}
+	}
+
+	public function tagContact($contact_id, $tag_id)
+	{
+		$api = $this->getAPI();
+		$result = $api->grpAssign($contact_id, $tag_id);	
+
+		return $result;
+	}
+
+	public function getLists()
+	{
+		//We are going to use tags on infusionsoft users
+		// By the way, tags are called groups in the infusionsoft api
+		
+		$tags = $this->getTags();
+		$lists = array();
+
+		foreach ($tags as $tag) {
+		
+			$lists[$tag['Id']] = array( name=> $tag['GroupName']);
+
+		}
+
+		return $lists;
+	}
+
+	public function getTags()
+	{
+		$api = $this->getAPI();
+		$fields = array('Id','GroupName');
+		$query = array('Id' => '%');
+		$result = $api->dsQuery('ContactGroup',1000,0,$query,$fields);
+
+		return $result;
+
 	}
 
 	public function request($request)
@@ -108,7 +142,7 @@ class WPSegmentInfusionsoft
 
 		if($app_name){
 
-
+			$app_name = str_replace('.infusionsoft.com', '', $app_name);
 			update_option('wp_segment_infusionsoft_app_name', $app_name);
 
 		}

@@ -42,6 +42,7 @@
 			#Templates
 
 			$this->getEmailForm();
+			$this->getSubmittingAjaxImage();
 
 			
 		}
@@ -96,6 +97,7 @@
 			
 			$quiz_view_port = '<div id="quiz-view-port" >';
 			$quiz_view_port .= $this->getDescription();
+			$quiz_view_port .= '<p id="quiz-view-port-message"></p>';
 			$question_view = '';
 
 			foreach ($quiz as $question) {
@@ -220,9 +222,15 @@
 
 		}
 
+		public function getSubmittingAjaxImage()
+		{
+			include(AP_PATH. 'templates/default/submitting-html.php');
+		}
+
 		public function getSubmitButton($return = false){
 
-			$button = '<button id="submit-segment-quiz" class="btn btn-large btn-warning" type="button">Find out now!</button>';
+			$button = '<button id="submit-segment-quiz" class="btn btn-large btn-warning" type="button">Find out
+			now!</button>';
 
 			if($return){
 

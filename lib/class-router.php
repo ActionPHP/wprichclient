@@ -247,7 +247,7 @@ class WPSegmentRouter
 			case "infusionsoft":
 
 				$infusionsoft = new WPSegmentInfusionsoft;
-				$infusionsoft->addContact($first_name, $last_name, $email);				
+				$infusionsoft->addContact($first_name, $last_name, $email, $list);				
 
 			break;
 
