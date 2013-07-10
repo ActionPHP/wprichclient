@@ -2,10 +2,18 @@
 
 require_once AP_PATH . 'lib/class-autoresponder.php';
 require_once AP_PATH . 'lib/class-results.php';
+require_once AP_PATH . 'lib/class-branding.php';
 
 $resultSettings = new WPSegmentResults;
 
 $settings = $resultSettings->getSettings();
+
+?>
+<?php
+
+	$branding = new WPSegmentBranding;
+
+	echo $branding->top();
 
 ?>
 	<label><h2>Your quiz results settings:</h2></label>
