@@ -13,5 +13,6 @@
 	require_once('lib/class-getresponse.php');
 	require_once('lib/class-autoresponder.php');
 	require_once('lib/class-custom-report.php');
+	require_once 'lib/class-branding.php';
 
 ?>

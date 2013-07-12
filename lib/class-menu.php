@@ -31,6 +31,10 @@ class SegmentMenu
 
  	public function main_menu_view()
  	{
+ 		
+ 		$branding = new WPSegmentBranding;
+ 		echo $branding->top();
+
  		$path = AP_PATH;
  		$path.= 'menu/main-page.php';
 
@@ -53,6 +57,9 @@ class SegmentMenu
 
  	public function create_quiz_menu_view()
  	{
+ 		$branding = new WPSegmentBranding;
+ 		echo $branding->top();
+
  		$path = AP_PATH;
  		$path.= 'menu/create-quiz.php';
  		
@@ -75,7 +82,11 @@ class SegmentMenu
  	}
 
  	public function results_settings_menu_view()
- 	{
+ 	{	
+
+ 		$branding = new WPSegmentBranding;
+ 		echo $branding->top();
+
  		$path = AP_PATH;
  		$path.= 'menu/results-settings.php';
  		
@@ -99,6 +110,9 @@ class SegmentMenu
 
  	public function quiz_settings_menu_view()
  	{
+ 		$branding = new WPSegmentBranding;
+ 		echo $branding->top();
+
  		$path = AP_PATH;
  		$path.= 'menu/quiz-settings.php';
  		
@@ -125,6 +139,10 @@ class SegmentMenu
 
  	public function autoresponder_menu_view()
  	{
+ 		
+ 		$branding = new WPSegmentBranding;
+ 		echo $branding->top();
+ 		
  		$path = AP_PATH;
  		$path.= 'menu/autoresponder-settings.php';
  		
