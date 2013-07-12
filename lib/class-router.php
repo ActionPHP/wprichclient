@@ -205,16 +205,41 @@ class WPSegmentRouter
 		
 		$wp_segment_quiz_results = new WPSegmentResults;
 		$wp_segment_quiz_results->processQuiz();
+		//Let's get the answer array to be used with the custom report
+		$answer_array = $wp_segment_quiz_results->getAnswerArray();
+
+		$wp_segment_custom_report = new WPSegmentCustomReport;
+		$wp_segment_custom_report->setAnswerArray($answer_array);
+		$body = $wp_segment_custom_report->html();
+
+		$result_id = $wp_segment_custom_report->create();
+
+		$wp_segment_quiz_results->setId($result_id);
+
 		echo $wp_segment_quiz_results->results();
 		die();
 	}
 
+	public function custom_report()
+	{
+		$result_id = $_GET['result_id'];
+
+		if(!ctype_digit($result_id)) die('Really?');
+
+		$wp_segment_custom_report = new WPSegmentCustomReport;
+		$wp_segment_custom_report->retrieve($result_id);
+
+		die();
+
+	}
 	public function store_contact(){
 
 		$first_name = trim(stripslashes($_POST['FirstName']));
 		$last_name = trim(stripslashes($_POST['LastName']));
 		$email = trim(stripslashes($_POST['Email']));
 		$list = trim(stripslashes($_POST['List']));
+		$result_id = trim(stripslashes($_POST['result_id']));
+
 
 		//If there isn't a list set, we just get out of here.
 		if($list == "_none"){
@@ -261,7 +286,14 @@ class WPSegmentRouter
 
 
 		}
-		//print_r(get_defined_vars());
+
+		//Let's store the contact details in the user_response table
+		//
+		$wp_segment_custom_report = new WPSegmentCustomReport;
+		$wp_segment_custom_report->storeContactDetails($result_id, $first_name,
+			$last_name, $email);
+
+
 		die();
 
 	}

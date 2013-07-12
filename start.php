@@ -38,9 +38,12 @@ class WPSegment
 		add_action( 'wp_ajax_actionphp_delete_answer', array($router, 'delete_answer'));
 		add_action( 'wp_ajax_actionphp_process_quiz', array($router, 'process_quiz'));
 		add_action( 'wp_ajax_actionphp_store_contact', array($router, 'store_contact'));
+		add_action( 'wp_ajax_nopriv_actionphp_process_quiz', array($router, 'process_quiz'));
+		add_action( 'wp_ajax_nopriv_actionphp_store_contact', array($router, 'store_contact'));
 		add_action( 'wp_ajax_actionphp_quiz_settings', array($router, 'quiz_settings'));
 		add_action( 'wp_ajax_actionphp_result_settings', array($router, 'result_settings'));
-
+		add_action( 'wp_ajax_actionphp_custom_report', array($router, 'custom_report'));
+		add_action( 'wp_ajax_nopriv_actionphp_custom_report', array($router, 'custom_report'));
 
 		add_action( 'template_redirect', array($router, 'show_quiz' ));
 	}

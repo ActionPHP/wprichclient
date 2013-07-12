@@ -35,6 +35,7 @@
 			$answer = $table->get($answer_id);
 
 				$answer->text = trim(stripslashes($answer->content));
+				$answer->custom_text = trim(stripslashes($answer->custom_text));
 			
 			return $answer;
 
@@ -48,6 +49,8 @@
 
 			foreach ($response as $answer) {
 				$answer->text = trim(stripslashes($answer->content));
+				$answer->custom_text = trim(stripslashes($answer->custom_text));
+
 			}
 
 			return $response;

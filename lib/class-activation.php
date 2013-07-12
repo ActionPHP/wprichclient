@@ -80,7 +80,31 @@ require_once 'class-builder.php';
 
 		public function response_table()
 		{
-			# code...
+			global $wpdb;
+
+			$table_name = $wpdb->prefix . "pp_actionphp_user_response";
+
+			$sql = "CREATE TABLE IF NOT EXISTS ".$table_name." (
+
+			id mediumint(9) NOT NULL AUTO_INCREMENT,
+
+			response text NOT NULL,
+			      
+			email varchar(250) NOT NULL,
+
+			first_name varchar(250) NOT NULL,
+
+			last_name varchar(250) NOT NULL,
+
+			Status varchar(10) NOT NULL DEFAULT 'fresh',
+
+			UNIQUE KEY id (id)
+
+			);";
+      
+	      	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    		dbDelta($sql);
 		}
 
 		public function user_table()

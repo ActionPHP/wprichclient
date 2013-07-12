@@ -12,5 +12,6 @@
 	require_once('lib/class-infusionsoft.php');
 	require_once('lib/class-getresponse.php');
 	require_once('lib/class-autoresponder.php');
+	require_once('lib/class-custom-report.php');
 
 ?>

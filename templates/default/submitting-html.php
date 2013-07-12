@@ -19,6 +19,6 @@
 <script type="text/template" id="wp-segment-thank-you-template">
 <center>
 		<h2 style="color: #008C00;">Thank YOU!<i class="icon-heart"></i></h2>
-		<h3>Please check your inbox to get your custom report.</h3>
+		<h3 ><a href="" id="custom-report-link">Click here for your personalized report.</a></h3>
 		</center>
 </script>

@@ -47,6 +47,8 @@ class WPSegmentResults
 
 		}
 
+		$this->setAnswerArray($answer_array);
+
 		return $answer_array;
 	}
 
@@ -57,12 +59,21 @@ class WPSegmentResults
 		
 		$points_base = $this->getPointsBase($answer->question_id);
 
+		$questionsMethod = $this->getQuestionsMethod();
+
+		$question = $questionsMethod->get($answer->question_id);
+		
+		$question_text = $question->content;
+
 		$single_answer_object = (object) array(
 
 				'question_id' => $answer->question_id,
-				'answer_id' => $answer->answer_id,
+				'question_text' => $question_text,
+				'answer_id' => $answer->id,
+				'answer_text' => $answer->content,
 				'points_base' => $points_base,
 				'points' => $answer->points,
+				'custom_response' => $answer->custom_text,
 
 			);
 
@@ -201,10 +212,23 @@ class WPSegmentResults
 		$resultList = $score_info->list;
 		$output['list'] = $resultList;
 
+		//Let's add the id of the stored results in the table.
+		$output['result_id'] = $this->getId();
+
 		$output = json_encode($output);
 
 		
 		return $output;
+	}
+
+	public function setAnswerArray($answer_array)
+	{
+		$this->answer_array = $answer_array;
+	}
+
+	public function getAnswerArray()
+	{
+		return $this->answer_array;
 	}
 
 	public function getQuestionsMethod()
@@ -261,6 +285,16 @@ class WPSegmentResults
 
 
 
+	}
+
+	public function setId($id)
+	{
+		$this->id = $id;
+	}
+
+	public function getId()
+	{
+		return $this->id;
 	}
 
 	public function getSettings()

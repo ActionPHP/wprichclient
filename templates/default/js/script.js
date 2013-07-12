@@ -142,6 +142,7 @@ function showResult(response){
 	var html = results.html;
 	var score = results.score;
 	var list  = results.list;
+	var result_id  = results.result_id;
 
 	$('#quiz-view-port').html('');
 
@@ -157,7 +158,7 @@ function showResult(response){
 		$('#quiz-view-port').append(emailForm);
 		$('#submit-contact-details').click(function(){ 
 
-			submitContactDetails(list);
+			submitContactDetails(list, result_id);
 
 		});
 
@@ -169,7 +170,7 @@ function showResult(response){
 
 }
 
-function submitContactDetails(list){
+function submitContactDetails(list, result_id){
 
 	$('#wp-segment-email-form-message').html('');
 	var firstName = $.trim($("#FirstName").val());
@@ -206,14 +207,17 @@ function submitContactDetails(list){
 		return false;
 	}
 
-	var submittingHTML = $("#wp-segment-submitting-template").html();
-	$('#quiz-view-port').html(submittingHTML);
+	
 
 
 	var formData = $('#wp-segment-email-form').serialize();
-	
 
-	formData = formData + '&List='+list
+	formData = formData + '&List='+list + '&result_id=' + result_id;
+		
+
+	var submittingHTML = $("#wp-segment-submitting-template").html();
+	$('#quiz-view-port').html(submittingHTML);
+
 	$.post(
 
 			ajaxurl + '?action=actionphp_store_contact',
@@ -224,9 +228,10 @@ function submitContactDetails(list){
 
 				var submittedHTML = $("#wp-segment-thank-you-template").html();
 				$('#quiz-view-port').html(submittedHTML);
-				wp-segment-thank-you-template
+				$('#custom-report-link').attr("href", ajaxurl +	'?action=actionphp_custom_report&result_id=' + result_id);
 
 			}
+
 
 
 		);
