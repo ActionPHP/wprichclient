@@ -146,7 +146,7 @@ function showResult(response){
 
 	$('#quiz-view-port').html('');
 
-	scoreHTML = '<center><p style="padding: 10px; border: 1px #cc0000 dashed;"><span style="font-size: 24px" >Your score is: <strong>' + score + '	</strong></span></p></center>';
+	scoreHTML = '<center><p style="padding: 10px; border: 1px #cc0000 dashed;"><span style="font-size: 24px" >Your score is: <strong>' + score + '/10	</strong></span></p></center>';
 
 	$('#quiz-view-port').append(scoreHTML);
 	$('#quiz-view-port').append(html);
