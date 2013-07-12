@@ -8,6 +8,10 @@ $resultSettings = new WPSegmentResults;
 
 
 ?>
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">Loading....</div>
+</div>
 <?php
 $settings = $resultSettings->getSettings();
 
@@ -76,3 +80,12 @@ button-primary" /> <span class="wp-segment-ajax-indicator"></span>
 	}
 
 ?>
+<!-- Preloader -->
+<script type="text/javascript">
+    //<![CDATA[
+        jQuery(window).load(function() { // makes sure the whole site is loaded
+            jQuery("#status").fadeOut(); // will first fade out the loading animation
+            jQuery("#preloader").delay(350).fadeOut("slow"); // will fade out the white DIV that covers the website.
+        })
+    //]]>
+</script>
