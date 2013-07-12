@@ -151,16 +151,16 @@ require_once 'class-builder.php';
 
 			//Results for high score
 			$high_score_id = $resultsTable->create('high', 'level');
-			$resultsTable->update($high_score_id, '70', 'points');
+			$resultsTable->update($high_score_id, '7', 'points');
 
 			//Results for medium score
 			$medium_score_id = $resultsTable->create('medium', 'level');
-			$resultsTable->update($medium_score_id, '50', 'points');
+			$resultsTable->update($medium_score_id, '5', 'points');
 
 
 			//Results for low score
 			$low_score_id = $resultsTable->create('low', 'level');
-			$resultsTable->update($low_score_id, '30', 'points');
+			$resultsTable->update($low_score_id, '3', 'points');
 
 
 			//Results for bottom score

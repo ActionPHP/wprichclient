@@ -10,7 +10,11 @@ Dear friend,
 </p>
 <p>
 Thank you for buying your copy of the Rich Client Selector. As the name
-suggests, it has one purpose only; to help you get a higher quality of clients.
+suggests, it has one purpose only; to help you get higher quality clients.
+</p>
+<p>
+As a result, <strong>you'll spend less time with grumpy ***holes,</strong> and do more of what
+you really love!
 </p>
 <p>In order to get the best out of it, please follow the set up instructions
 	very closely. Also, please dedicate about half an hour to the process - it

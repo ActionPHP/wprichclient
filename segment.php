@@ -3,7 +3,7 @@
 
 /*
 
-Plugin name: WP Segment
+Plugin name: Rich Client Selector
 Description: Segments visitors according to how suitable your services are to them.
 
 */

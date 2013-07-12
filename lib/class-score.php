@@ -22,7 +22,9 @@ class WPSegmentScore
 		$score = null;
 
 		$answer_points = $answer->points;
-		$points_base = $answer->points_base;
+
+		//We have made all the answers reltive to 10 points
+		$points_base = 10; //$answer->points_base;
 
 		//Let's make sure we don't divide by 0
 		if($points_base != 0){
@@ -77,7 +79,7 @@ class WPSegmentScore
 		return $answer_array;
 	}
 
-	public function finalScore($multiplier=100)
+	public function finalScore($multiplier=10)
 	{
 		if(!$this->getAnswerArray()) return false;
 

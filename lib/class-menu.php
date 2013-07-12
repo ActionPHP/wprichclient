@@ -19,8 +19,8 @@ class SegmentMenu
 
  	public function main_menu()
  	{
- 		$page_title = 'Segment This';
-		$menu_title = 'Segmenting';
+ 		$page_title = 'Your Rich Client Selector';
+		$menu_title = 'Rich Client Selector';
 		$capability = $this->capability;
 		$menu_slug = $this->parent_slug;
 		$function = array($this, 'main_menu_view');

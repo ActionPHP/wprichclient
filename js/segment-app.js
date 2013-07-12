@@ -456,9 +456,18 @@
 			var value = '';
 			value = this.model.get('points');
 			
-
+			
 			var newValue = jQuery.trim(this.$pointsInput.val());
-			newValue = (newValue == null || isNaN(newValue) ) ? 0 : newValue;
+
+			if( newValue > 10 ){
+
+				showQuizMessage(this.messageEl, ' ⚠ An answer cannot score more than 10 points.', 'error');
+				//this.closePointsEdit();
+
+				return;
+			}
+
+			newValue = (newValue == null || isNaN(newValue) || newValue > 10 ) ? 0 : newValue;
 
 			if(newValue != ''){
 

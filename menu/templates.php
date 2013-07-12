@@ -36,8 +36,8 @@
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	    <h3 id="modal-header"></h3>
-	    <p><strong>NOTE: </strong>Please avoid using HTML  code since it may conflict with creating
-	    your custom PDF report. If you do, please test it first.</p>
+	   <!-- <p><strong>NOTE: </strong>Please avoid using HTML  code since it may conflict with creating
+	    your custom PDF report. If you do, please test it first.</p> -->
 	  </div>
 	  <div class="modal-body">
 	    <textarea id="modal-textarea" style="padding: 10px; width: 500px; height: 200px; border: none;"></textarea>
