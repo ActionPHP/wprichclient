@@ -24,25 +24,19 @@ you really love!
 	will <strong>save you hours of work in the near future</strong>.
 </p>
 <p>
+<strong>Let's get started!</strong>
+</p>
+<p>
 All the best!
 </p>
 <p>
 	<i>Jean Paul</i>
+	<br>
+	<em>Email: </em>projects@ActionPHP.com
 </p>
-<p>
-<strong>Let's get started!</strong>
+<p><strong>P.S.</strong> Here is a link to a couple of help videos: <a href="http://actionphp.com/rcs/"
+	target="_blank">Help Videos</a>.
+
 </p>
-
-<ol>
-
-	<li>Connect your autoresponder.</li>
-	<li>Create your quiz settings</li>
-	<li>Create your quiz.</li>
-	<li>Create your result settings</li>
-
-</ol>
-
-
-
 	</div>
 </div>
