@@ -210,7 +210,7 @@ class WPSegmentResults
 		$output['html'] = trim(stripslashes($resultHtml));
 
 		$resultList = $score_info->list;
-		$output['list'] = $resultList;
+		$output['list'] = ($resultList) ? $resultList : '_none';
 
 		//Let's add the id of the stored results in the table.
 		$output['result_id'] = $this->getId();
