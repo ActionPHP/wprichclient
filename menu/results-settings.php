@@ -41,7 +41,8 @@ function wp_segment_result_setting_fields($settings){
 			<input type="text" name="<?php echo $settings->level ;?>"
 			class="wp-segment-result-points small-text"
 			<?php _disabled($settings->level); ?>
-			 value="<?php echo $settings->points; ?>" />
+			 value="<?php echo $settings->points; ?>" /> <span id="<?php echo $settings->level; ?>-points-message"
+			  style="color: #cc0000;"></span>
 		</h4>
 	</label>
 	<label>
